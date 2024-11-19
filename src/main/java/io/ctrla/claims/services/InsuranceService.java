@@ -4,6 +4,8 @@ package io.ctrla.claims.services;
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.response.ApiResponse;
+import io.ctrla.claims.entity.Hospital;
+import io.ctrla.claims.entity.HospitalAdmin;
 import io.ctrla.claims.entity.Insurance;
 import io.ctrla.claims.entity.InsuranceAdmin;
 import io.ctrla.claims.exceptions.NotFoundException;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class InsuranceService {
@@ -176,6 +179,35 @@ public class InsuranceService {
         } catch (Exception e) {
             // Log and rethrow unexpected exceptions for further handling
             throw new RuntimeException("An unexpected error occurred while trying to delete insurance with ID " + insuranceId, e);
+        }
+    }
+
+
+    //Get Insurance Admins
+    public ApiResponse<List<InsuranceAdmin>> getInsuranceAdmins() {
+        try {
+            List<Insurance> insurances = insuranceRepository.findAll();
+            if (insurances.isEmpty()) {
+                throw new NotFoundException("No insurance companies found");
+            }
+
+            List<InsuranceAdmin> insuranceAdmins = insurances.stream()
+                    .flatMap(hospital -> hospital.getInsuranceAdmins().stream())
+                    .collect(Collectors.toList());
+
+            // Return success response
+            return new ApiResponse<>(
+                    200,
+                    "success",
+                    insuranceAdmins);
+        } catch (NotFoundException nfe) {
+            // Handle not found scenario
+            return new ApiResponse<>(404, nfe.getMessage(), null);
+
+        } catch (Exception e) {
+
+            // Return error response for unexpected errors
+            return new ApiResponse<>(500, "An error occurred while fetching insurance admins", null);
         }
     }
 

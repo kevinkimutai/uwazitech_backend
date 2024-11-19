@@ -12,11 +12,10 @@ public class PolicyHolder {
    @Column(name = "policy_holder_id")
    private Long policyHolderId;
 
-
    @Column(name="policy_number", unique = true)
    private String policyNumber;
 
-   @OneToOne
+   @ManyToOne
    @JoinColumn(name = "insurance_id_fkey", referencedColumnName = "insurance_id", nullable = false)
    private Insurance insurance;
 

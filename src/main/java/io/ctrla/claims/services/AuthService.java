@@ -10,6 +10,7 @@ import io.ctrla.claims.entity.*;
 import io.ctrla.claims.mappers.InsuranceMapper;
 import io.ctrla.claims.mappers.UserMapper;
 import io.ctrla.claims.repo.*;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -34,6 +36,8 @@ public class AuthService {
 
     private final BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder(12);
     private final AdminRepository adminRepository;
+    private final PolicyHolderService policyHolderService;
+    private final PolicyHolderRepository policyHolderRepository;
 
     public AuthService(
             UserRepository userRepository,
@@ -44,7 +48,7 @@ public class AuthService {
             HospitalRepository hospitalRepository,
             InsuranceRepository insuranceRepository,
             InsuranceAdminRepository insuranceAdminRepository,
-            AdminRepository adminRepository) {
+            AdminRepository adminRepository, PolicyHolderService policyHolderService, PolicyHolderRepository policyHolderRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.authManager = authManager;
@@ -54,6 +58,8 @@ public class AuthService {
         this.hospitalRepository = hospitalRepository;
         this.insuranceRepository = insuranceRepository;
         this.adminRepository = adminRepository;
+        this.policyHolderService = policyHolderService;
+        this.policyHolderRepository = policyHolderRepository;
     }
 
     public ApiResponse<UserDto> registerNewUser(UserDto userDto) {
@@ -68,6 +74,7 @@ public class AuthService {
         savedUserDto.setEmail(savedUser.getEmail());
         savedUserDto.setSignUpType(userDto.getSignUpType());
 
+        String policyNumber = userDto.getPolicyNumber();
         String signUpType = userDto.getSignUpType();
 
         if ("hospital".equals(signUpType)) {
@@ -98,7 +105,23 @@ public class AuthService {
             userRepository.save(savedUser);
             insuranceAdminRepository.save(insuranceAdmin);
 
-        } else if (signUpType == null) {
+        }  else if (signUpType == null && policyNumber != null) {
+            savedUser.setRole(Roles.ROLE_POLICYHOLDER);
+            savedUser.setIsVerified(true);
+
+            PolicyHolder pHolder = new PolicyHolder();
+            pHolder.setUser(savedUser); // Set the saved user directly
+            pHolder.setPolicyNumber(policyNumber);
+
+            Insurance insurance = insuranceRepository.findById(userDto.getInsuranceId())
+                    .orElseThrow(() -> new IllegalArgumentException("Insurance not found with id: " + userDto.getInsuranceId()));
+
+            pHolder.setInsurance(insurance);
+
+
+            userRepository.save(savedUser);
+            policyHolderRepository.save(pHolder);
+        }else if (signUpType == null) {
             // Default role as ADMIN when signUpType is null
             savedUser.setRole(Roles.ROLE_ADMIN);
 
@@ -106,7 +129,7 @@ public class AuthService {
             admin.setUser(savedUser); // Set the saved user directly
 
             // No need to fetch the user again
-            adminRepository.save(admin); // Save the AdminEntity
+            adminRepository.save(admin);
         } else {
             throw new IllegalArgumentException("Invalid sign-up type: " + signUpType);
         }
@@ -117,26 +140,36 @@ public class AuthService {
 
 
     public ApiResponse<AuthDto> login(UserDto user) {
-       Authentication authentication =  authManager.authenticate(
-               new UsernamePasswordAuthenticationToken(user.getEmail(),user.getPassword())
-       );
+        String identifier;
+        User foundUser;
 
-       if(authentication.isAuthenticated()){
-          User foundUser =  userRepository.findByEmail(user.getEmail());
+        // Determine if the user is logging in with a policy number or email
+        if (user.getPolicyNumber() != null && !user.getPolicyNumber().isEmpty()) {
+            identifier = user.getPolicyNumber();
+            Optional<PolicyHolder> optionalPolicyHolder = policyHolderRepository.findPolicyHolderByPolicyNumber(user.getPolicyNumber());
+            PolicyHolder policyHolder = optionalPolicyHolder.orElseThrow(() -> new EntityNotFoundException("policyholder not found"));
 
+            foundUser = policyHolder.getUser();
+        } else {
+            identifier = user.getEmail();
+            foundUser = userRepository.findByEmail(identifier); // Fetch user by email
+        }
 
-         String generatedToken =  jwtService.generateToken(foundUser);
-         AuthDto authDto = new AuthDto();
+        // Authenticate the user
+        Authentication authentication = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(identifier, user.getPassword())
+        );
 
-         authDto.setToken(generatedToken);
-
-
-           return new ApiResponse<>(200,"success",authDto);
-       }
-       else{
-          return new ApiResponse<>(500, "An error occurred while fetching hospital companies", null);
-       }
+        if (authentication.isAuthenticated() && foundUser != null) {
+            String generatedToken = jwtService.generateToken(foundUser);
+            AuthDto authDto = new AuthDto();
+            authDto.setToken(generatedToken);
+            return new ApiResponse<>(200, "success", authDto);
+        } else {
+            return new ApiResponse<>(401, "Invalid credentials", null);
+        }
     }
+
 
 
     public Long getCurrentUserId() {

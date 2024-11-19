@@ -28,6 +28,9 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital")
     private List<HospitalAdmin> hospitalAdmins;
 
+    @OneToMany(mappedBy = "hospital")
+    private List<PreAuth> preAuths;
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

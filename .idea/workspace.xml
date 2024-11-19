@@ -4,7 +4,78 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7002104f-b275-440c-8a21-de7aeab7f02e" name="Changes" comment="" />
+    <list default="true" id="7002104f-b275-440c-8a21-de7aeab7f02e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/hospital/HospitalAdminDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/policyholder/CheckPwdPolicyHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/policyholder/PolicyHolderRes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/preauth/PreAuthDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/preauth/PreAuthResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/PreAuth.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PreAuthMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/PreAuthRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalAdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceAdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PreAuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/hospital/HospitalAdminDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/CheckPwdPolicyHolder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/PolicyHolderRes.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthResponseDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PreAuth.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PreAuthMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PreAuthRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalAdminService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceAdminService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PreAuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/HospitalAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/HospitalAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/PolicyHolderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/PolicyHolderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/user/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Hospital.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Hospital.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Insurance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Insurance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/PolicyHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PolicyHolderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PolicyHolderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalAdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalAdminRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/PolicyHolderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/PolicyHolderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PolicyHolderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PolicyHolderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/UserPrincipalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/UserPrincipalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/JwtFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalAdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceAdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/PolicyHolderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/PolicyHolderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/user/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/user/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Hospital.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Hospital.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Insurance.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Insurance.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PolicyHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PolicyHolder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PolicyHolderMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PolicyHolderMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PolicyHolderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PolicyHolderRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PolicyHolderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PolicyHolderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/UserPrincipalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/UserPrincipalService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-io.ctrla.claims.ClaimsApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-io.ctrla.claims.ClaimsApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/io.ctrla.claims.ClaimsApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/io.ctrla.claims.ClaimsApplicationTests.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +86,8 @@
       <list>
         <option value="Exception" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,38 +116,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClaimsApplication.executor": "Run",
-    "Docker.claims.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "Spring Boot.ClaimsApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/kevin-kimutai/learn/eclectics/backend/claims.io",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClaimsApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.claims.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ClaimsApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kevin-kimutai/learn/eclectics/backend/claims.io&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.ctrla.claims.config" />
@@ -151,7 +222,16 @@
       <workItem from="1729664653870" duration="841000" />
       <workItem from="1729666299465" duration="12698000" />
       <workItem from="1729750275211" duration="20081000" />
-      <workItem from="1729835353311" duration="35169000" />
+      <workItem from="1729835353311" duration="46396000" />
+      <workItem from="1730183031504" duration="3454000" />
+      <workItem from="1730266890192" duration="20941000" />
+      <workItem from="1730359449756" duration="70000" />
+      <workItem from="1731135019131" duration="36480000" />
+      <workItem from="1731315098174" duration="3051000" />
+      <workItem from="1731346784549" duration="8723000" />
+      <workItem from="1731393940667" duration="1246000" />
+      <workItem from="1731501129126" duration="7463000" />
+      <workItem from="1731985997825" duration="1425000" />
     </task>
     <servers />
   </component>
@@ -164,171 +244,14 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>130</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>125</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>133</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>136</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>138</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>137</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>139</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>138</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>139</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>137</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>147</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>149</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>66</line>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
+        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>67</line>
+          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java</url>
+          <line>164</line>
           <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>82</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

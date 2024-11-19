@@ -70,7 +70,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/auth/signup",
                                         "/api/v1/auth/login",
                                         "/api/v1/hospitals", // Public access to the base path (e.g., listing)
-                                        "/api/v1/insurance",
+                                        "/api/v1/insurance/**",
                                         "/error")
                                 .permitAll()
                                 // Restricted endpoints with specific roles
@@ -78,7 +78,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/insuranceadmin/**").hasAnyRole("INSURANCE_ADMIN")
                                 .requestMatchers("/api/v1/admin/**").hasAnyRole("ADMIN") // Restrict insurance admin actions
                                 .requestMatchers("/api/v1/policyholder/**").hasAnyRole("POLICYHOLDER")
-                                .anyRequest().authenticated() // All other requests require authentication
+                                .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

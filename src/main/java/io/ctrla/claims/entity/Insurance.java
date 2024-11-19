@@ -33,6 +33,9 @@ public class Insurance {
     @OneToMany(mappedBy = "insurance")
     private List<InsuranceAdmin> insuranceAdmins;
 
+    @OneToMany(mappedBy = "insurance")
+    private List<PreAuth> preAuths;
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

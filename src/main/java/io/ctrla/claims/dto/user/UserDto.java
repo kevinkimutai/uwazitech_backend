@@ -11,6 +11,9 @@ import lombok.Data;
 public class UserDto {
     private String email;
 
+    @JsonProperty("policy_number")
+    private String policyNumber;
+
     @JsonProperty("first_name")
     private String firstName;
 

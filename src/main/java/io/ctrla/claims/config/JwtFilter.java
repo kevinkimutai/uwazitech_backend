@@ -3,6 +3,7 @@ package io.ctrla.claims.config;
 import io.ctrla.claims.entity.User;
 
 import io.ctrla.claims.entity.UserPrincipal;
+import io.ctrla.claims.repo.PolicyHolderRepository;
 import io.ctrla.claims.repo.UserRepository;
 import io.ctrla.claims.services.JWTService;
 
@@ -111,10 +112,12 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private final JWTService jwtService;
     private final UserRepository userRepository;
+    private final PolicyHolderRepository policyHolderRepository;
 
-    public JwtFilter(JWTService jwtService, UserRepository userRepository) {
+    public JwtFilter(JWTService jwtService, UserRepository userRepository,PolicyHolderRepository policyHolderRepository) {
         this.jwtService = jwtService;
         this.userRepository = userRepository;
+        this.policyHolderRepository = policyHolderRepository;
     }
 
     @Override
@@ -138,10 +141,22 @@ public class JwtFilter extends OncePerRequestFilter {
                 Boolean isVerified = jwtService.extractClaim(token, claims -> claims.get("isVerified", Boolean.class));
                 Long userId = jwtService.extractClaim(token, claims -> claims.get("userId", Long.class));
                 String role = jwtService.extractClaim(token, claims -> claims.get("role", String.class));
+             //   String policyNumber = jwtService.extractClaim(token, claims -> claims.get("policynumber", String.class));
 
-                if (Boolean.TRUE.equals(isVerified) && email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                    User user = userRepository.findByEmail(email);
+
+                if (Boolean.TRUE.equals(isVerified) && SecurityContextHolder.getContext().getAuthentication() == null) {
+                    User user;
+                    if (email != null && !email.trim().isEmpty()) {
+                        user = userRepository.findByEmail(email);
+                        System.out.println("EMAIL :" +email);
+                    }
+                    else{
+                        user = userRepository.findById(userId).orElse(null);
+                        System.out.println("HAPA 2:"+user);
+                    }
+
                     if (user != null) {
+
                         UserPrincipal userPrincipal = new UserPrincipal(user, userId, role);
 
                         if (jwtService.validateToken(token, userPrincipal)) {

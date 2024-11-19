@@ -4,6 +4,7 @@ package io.ctrla.claims.controller;
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
+import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Invoice;
 import io.ctrla.claims.entity.PolicyHolder;
@@ -38,6 +39,16 @@ public class PolicyHolderController {
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }
+
+    //Get policyholder details
+//    @GetMapping("/{policyHolderId}")
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    public ResponseEntity<ApiResponse<PolicyHolderRes>> getPolicyHolderById(@PathVariable("policyHolderId") Long policyHolderId) {
+//        ApiResponse<PolicyHolderRes> apiResponse = policyHolderService.getPolicyHolderById(policyHolderId);
+//
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+//    }
+
 
 //    //Get PolicyHolders Invoices
 //    @GetMapping("/invoices")

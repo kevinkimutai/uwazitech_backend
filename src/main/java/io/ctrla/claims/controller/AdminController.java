@@ -1,16 +1,19 @@
 package io.ctrla.claims.controller;
 
 
+import io.ctrla.claims.dto.hospital.HospitalAdminDto;
 import io.ctrla.claims.dto.hospital.HospitalDto;
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
+import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
 import io.ctrla.claims.dto.response.ApiResponse;
-import io.ctrla.claims.services.AdminService;
-import io.ctrla.claims.services.HospitalService;
-import io.ctrla.claims.services.InsuranceService;
-import io.ctrla.claims.services.PolicyHolderService;
+import io.ctrla.claims.entity.HospitalAdmin;
+import io.ctrla.claims.entity.InsuranceAdmin;
+import io.ctrla.claims.entity.PolicyHolder;
+import io.ctrla.claims.entity.PreAuth;
+import io.ctrla.claims.services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -26,12 +29,23 @@ public class AdminController {
     private final HospitalService hospitalService;
     private final InsuranceService insuranceService;
     private final PolicyHolderService policyHolderService;
+    private final PreAuthService preAuthService;
+    private final HospitalAdminService hospitalAdminService;
+    private final InsuranceAdminService insuranceAdminService;
 
     public AdminController(HospitalService hospitalService,
-                           InsuranceService insuranceService, PolicyHolderService policyHolderService) {
+                           InsuranceService insuranceService,
+                           PolicyHolderService policyHolderService,
+                           PreAuthService preAuthService,
+                           HospitalAdminService hospitalAdminService,
+                           InsuranceAdminService insuranceAdminService) {
         this.hospitalService = hospitalService;
         this.insuranceService = insuranceService;
         this.policyHolderService = policyHolderService;
+        this.preAuthService = preAuthService;
+        this.hospitalAdminService = hospitalAdminService;
+        this.insuranceAdminService = insuranceAdminService;
+
     }
 
     //Create New Hospital
@@ -42,9 +56,18 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 
+//    //Get Hospital stats
+//    @PostMapping(value = "/hospital/stats")
+//    @ResponseStatus(HttpStatus.OK)
+//    public ResponseEntity<ApiResponse<List<HospitalResponseDto>>> getHospitalStats() {
+//        ApiResponse<List<HospitalResponseDto>> apiResponse = hospitalService.getHospitalsStats();
+//
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+//    }
+
     //Get All Hospital Companies
     @GetMapping("/hospital")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ApiResponse<List<HospitalResponseDto>>> getHospitals() {
         ApiResponse<List<HospitalResponseDto>> apiResponse = hospitalService.getHospitals();
 
@@ -53,7 +76,7 @@ public class AdminController {
 
     //Get Hospital By ID
     @GetMapping("/hospital/{hospitalId}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ApiResponse<HospitalResponseDto>> getHospitalById(@PathVariable Long hospitalId) {
         ApiResponse<HospitalResponseDto> apiResponse = hospitalService.getHospitalById(hospitalId);
 
@@ -63,7 +86,7 @@ public class AdminController {
 
     //Update Hospital
     @PatchMapping("/hospital/{hospitalId}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ApiResponse<HospitalResponseDto>> updateHospital(
             @Valid @PathVariable Long hospitalId, @RequestBody HospitalDto hospitalDto) {
         ApiResponse<HospitalResponseDto> apiResponse = hospitalService.updateHospital( hospitalId, hospitalDto);
@@ -123,28 +146,104 @@ public class AdminController {
     }
 
 
-    ////PolicyHolders
-    //Get All policyHolders
-    @GetMapping("/policyholder")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<List<PolicyHolderDto>>> getPolicyHolders() {
-        ApiResponse<List<PolicyHolderDto>> apiResponse = policyHolderService.getAllPolicyHolders();
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
-    }
-
-    //Get PolicyHolder By ID
-    @GetMapping("/policyholder/{policyHolderId}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<PolicyHolderDto>> getPolicyHolderById(@PathVariable Long policyHolderId) {
-        ApiResponse<PolicyHolderDto> apiResponse = policyHolderService.getPolicyHolderById(policyHolderId);
-
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
-    }
+//    //Get PolicyHolder By ID
+//    @GetMapping("/policyholder/{policyHolderId}")
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    public ResponseEntity<ApiResponse<PolicyHolderRes>> getPolicyHolderById(@PathVariable Long policyHolderId) {
+//        ApiResponse<PolicyHolderRes> apiResponse = policyHolderService.getPolicyHolderById(policyHolderId);
+//
+//        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+//    }
 
 
     //Users
-    //Get All Users
+    //Get All HospitalAdmins
+    @GetMapping("/hospitaladmins")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<List<HospitalAdmin>>> getHospitalAdmins() {
+        ApiResponse<List<HospitalAdmin>> apiResponse = hospitalService.getHospitalAdmins();
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+    //Get HospitalAdmin By Id
+    @GetMapping("/hospitaladmins/{hospitalAdminId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<HospitalAdmin>> getHospitalAdminById(@PathVariable Long hospitalAdminId) {
+        ApiResponse<HospitalAdmin> apiResponse = hospitalAdminService.getHospitalAdminById(hospitalAdminId);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+    //Update HospitalAdmin
+    @PatchMapping("/hospitaladmins/{hospitalAdminId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<HospitalAdmin>> updateHospitalAdmin(@Valid @PathVariable Long hospitalAdminId, @RequestBody HospitalAdminDto hospitalAdminDto) {
+        ApiResponse<HospitalAdmin> apiResponse = hospitalAdminService.updateHospitalAdmin(hospitalAdminId, hospitalAdminDto);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+
+
+    //Get All InsuranceAdmins
+    @GetMapping("/insuranceadmins")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<List<InsuranceAdmin>>> getInsuranceAdmins() {
+        ApiResponse<List<InsuranceAdmin>> apiResponse = insuranceService.getInsuranceAdmins();
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+    //Update InsuranceAdmin
+    @PatchMapping("/insuranceadmins/{insuranceAdminId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<InsuranceAdmin>> updateInsuranceAdmin(@Valid @PathVariable Long insuranceAdminId, @RequestBody HospitalAdminDto hospitalAdminDto) {
+        ApiResponse<InsuranceAdmin> apiResponse = insuranceAdminService.updateInsuranceAdmin(insuranceAdminId, hospitalAdminDto);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+
+    //Get InsuranceAdmin By Id
+    @GetMapping("/insuranceadmins/{insuranceAdminId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<InsuranceAdmin>> getInsuranceAdminById(@PathVariable Long insuranceAdminId) {
+        ApiResponse<InsuranceAdmin> apiResponse = insuranceAdminService.getInsuranceAdminById(insuranceAdminId);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+
+    //Get All PolicyHolders
+    @GetMapping("/policyHolders")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<List<PolicyHolder>>> getPolicyHolderAdmins() {
+        ApiResponse<List<PolicyHolder>> apiResponse = policyHolderService.getAllPolicyHolders();
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+
+    //PreAuths
+    //Get All PreAuths
+    @GetMapping("/preauth")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<List<PreAuth>>> getPreAuths() {
+        ApiResponse<List<PreAuth>> apiResponse = preAuthService.getAllPreAuths();
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
+    //Get PreAuth By Id
+    @GetMapping("/preauth/{preAuthId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<PreAuth>> getPreAuthById(@PathVariable Long preAuthId) {
+        ApiResponse<PreAuth> apiResponse = preAuthService.getPreAuthsById(preAuthId);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
 
 
 

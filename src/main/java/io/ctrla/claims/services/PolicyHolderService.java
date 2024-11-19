@@ -3,7 +3,9 @@ package io.ctrla.claims.services;
 
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
+import io.ctrla.claims.dto.policyholder.CheckPwdPolicyHolder;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
+import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.Invoice;
@@ -17,6 +19,7 @@ import io.ctrla.claims.repo.InvoiceRepository;
 import io.ctrla.claims.repo.PolicyHolderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +38,7 @@ public class PolicyHolderService {
             PolicyHolderRepository policyHolderRepository,
             PolicyHolderMapper policyHolderMapper,
             InvoiceRepository invoiceRepository,
-            AuthService authService) {
+            @Lazy AuthService authService) {
         this.policyHolderMapper = policyHolderMapper;
         this.policyHolderRepository = policyHolderRepository;
         this.invoiceRepository = invoiceRepository;
@@ -45,9 +48,6 @@ public class PolicyHolderService {
     //Get PolicyHolder
     public ApiResponse<PolicyHolderDto> getPolicyHolder() {
         try {
-
-//            Long userIdObj = (Long) request.getAttribute("userId");
-//            long userId = (userIdObj != null) ? userIdObj : 0L;
 
             Long userId = authService.getCurrentUserId();
 
@@ -72,18 +72,18 @@ public class PolicyHolderService {
     }
 
 
-    //Get PolicyHolder
-    public ApiResponse<List<PolicyHolderDto>> getAllPolicyHolders() {
+    //Get PolicyHolders
+    public ApiResponse<List<PolicyHolder>> getAllPolicyHolders() {
         try {
 
             List<PolicyHolder> pHolders = policyHolderRepository.findAll();
-            List<PolicyHolderDto> pHoldersDto = policyHolderMapper.toPolicyHoldersDto(pHolders);
+            //List<PolicyHolderDto> pHoldersDto = policyHolderMapper.toPolicyHoldersDto(pHolders);
 
             // Return success response
             return new ApiResponse<>(
                     200,
                     "success",
-                    pHoldersDto );
+                    pHolders );
         } catch (NotFoundException nfe) {
             // Handle not found scenario
             return new ApiResponse<>(404, nfe.getMessage(), null);
@@ -96,30 +96,60 @@ public class PolicyHolderService {
     }
 
 
-    //Get PolicyHolder By Id
-    public ApiResponse<PolicyHolderDto> getPolicyHolderById  (Long policyHolderId){
+//    //Get PolicyHolder By Id
+//    public ApiResponse<PolicyHolderRes> getPolicyHolderById  (String policyHolderId){
+//        try {
+//
+//            Optional<PolicyHolder> optionalPolicyHolder = policyHolderRepository.findPolicyHolderByPolicyNumber(policyHolderId);
+//
+//           // PolicyHolder policyHolder = optionalPolicyHolder.orElseThrow(() -> new EntityNotFoundException("PolicyHolder not found"));
+//
+//            // Map the hospital to the required result
+//            PolicyHolderRes result = policyHolderMapper.toPolicyHolderRes(policyHolder);
+//
+//            return new ApiResponse<>(200,"success",result);
+//        }
+//        catch(NotFoundException e){
+//            return new ApiResponse<>(404, e.getMessage(), null);
+//        }
+//        catch (Exception e) {
+//
+//            // Return error response for unexpected errors
+//            return new ApiResponse<>(500, "An error occurred while fetching insurance with Id", null);
+//        }
+
+    //}
+
+
+    //Check Pwd By PolicyNumber
+    public ApiResponse<CheckPwdPolicyHolder> checkPwdPolicyHolderByPolicyNumber(String policyNumber) {
         try {
 
-            Optional<PolicyHolder> optionalPolicyHolder = policyHolderRepository.findById(policyHolderId);
+            PolicyHolder pHolder = policyHolderRepository.findPolicyHolderByPolicyNumber(policyNumber)
+                    .orElseThrow(() -> new NotFoundException("No such PolicyHolder with that policyNumber"));;;
 
-            PolicyHolder policyHolder = optionalPolicyHolder.orElseThrow(() -> new EntityNotFoundException("PolicyHolder not found"));
 
-            // Map the hospital to the required result
-            PolicyHolderDto result = policyHolderMapper.toPolicyHolderDto(policyHolder);
+             CheckPwdPolicyHolder checkPwdPolicyHolder = new CheckPwdPolicyHolder();
+             if(pHolder.getUser().getPassword()!=null){
+                 checkPwdPolicyHolder.setHasPwd(true);
+             }else{
+                 checkPwdPolicyHolder.setHasPwd(false);
+             }
+            // Return success response
+            return new ApiResponse<>(
+                    200,
+                    "success",
+                    checkPwdPolicyHolder );
+        } catch (NotFoundException nfe) {
+            // Handle not found scenario
+            return new ApiResponse<>(404, nfe.getMessage(), null);
 
-            return new ApiResponse<>(200,"success",result);
-        }
-        catch(NotFoundException e){
-            return new ApiResponse<>(404, e.getMessage(), null);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
 
             // Return error response for unexpected errors
-            return new ApiResponse<>(500, "An error occurred while fetching insurance with Id", null);
+            return new ApiResponse<>(500, "An error occurred while checking pwd policyholder details", null);
         }
-
     }
-
 
     //Get invoices
     public ApiResponse<List<Invoice>> getPolicyHolderInvoices(HttpServletRequest request) {

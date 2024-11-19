@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class HospitalService {
@@ -63,6 +64,33 @@ public class HospitalService {
             return new ApiResponse<>(500, "An error occurred while fetching hospital companies", null);
         }
     }
+
+
+//    //Get Hospital Stats
+//    public ApiResponse<List<HospitalResponseDto>> getHospitalsStats() {
+//        try {
+//            Long hospitalCount = hospitalRepository.count();
+//
+//            if (hospitals.isEmpty()) {
+//                throw new NotFoundException("No hospital companies found");
+//            }
+//
+//            // Return success response
+//            return new ApiResponse<>(
+//                    200,
+//                    "success",
+//                    hospitals);
+//        } catch (NotFoundException nfe) {
+//            // Handle not found scenario
+//            return new ApiResponse<>(404, nfe.getMessage(), null);
+//
+//        } catch (Exception e) {
+//
+//            // Return error response for unexpected errors
+//            return new ApiResponse<>(500, "An error occurred while fetching hospital companies", null);
+//        }
+//    }
+
 
     //Get HospitalCompany By Id
     public ApiResponse<HospitalResponseDto> getHospitalById (Long hospitalId){
@@ -146,4 +174,34 @@ public class HospitalService {
             throw new RuntimeException("An unexpected error occurred while trying to delete insurance with ID " + hospitalId, e);
         }
     }
+
+    //Get Hospital Admins
+    public ApiResponse<List<HospitalAdmin>> getHospitalAdmins() {
+        try {
+           List<Hospital> hospitals = hospitalRepository.findAll();
+            if (hospitals.isEmpty()) {
+                throw new NotFoundException("No hospital companies found");
+            }
+
+
+            List<HospitalAdmin> hospitalAdmins = hospitals.stream()
+                    .flatMap(hospital -> hospital.getHospitalAdmins().stream())
+                    .collect(Collectors.toList());
+
+            // Return success response
+            return new ApiResponse<>(
+                    200,
+                    "success",
+                    hospitalAdmins);
+        } catch (NotFoundException nfe) {
+            // Handle not found scenario
+            return new ApiResponse<>(404, nfe.getMessage(), null);
+
+        } catch (Exception e) {
+
+            // Return error response for unexpected errors
+            return new ApiResponse<>(500, "An error occurred while fetching hospital admins", null);
+        }
+    }
+
 }

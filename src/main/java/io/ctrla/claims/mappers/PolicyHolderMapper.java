@@ -3,6 +3,7 @@ package io.ctrla.claims.mappers;
 
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
+import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.PolicyHolder;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,17 @@ public class PolicyHolderMapper {
                 .map(this::toPolicyHolderDto)
                 .collect(Collectors.toList());
 
+    }
+
+    public PolicyHolderRes toPolicyHolderRes(PolicyHolder policyHolder){
+        PolicyHolderRes policyHolderRes = new PolicyHolderRes();
+
+        policyHolderRes.setFirstName(policyHolder.getUser().getFirstName());
+        policyHolderRes.setLastName(policyHolder.getUser().getLastName());
+        policyHolderRes.setPolicyNumber(policyHolder.getPolicyNumber());
+
+
+        return policyHolderRes;
     }
 
 }

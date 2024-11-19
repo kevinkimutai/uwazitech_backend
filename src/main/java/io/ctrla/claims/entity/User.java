@@ -18,7 +18,7 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
-    @NotNull(message = "email cannot be null")
+
     @Email(message = "Email should be valid")
     @Column(unique = true)
     private String email;
