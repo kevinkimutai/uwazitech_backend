@@ -145,27 +145,47 @@ public class AuthService {
 
         // Determine if the user is logging in with a policy number or email
         if (user.getPolicyNumber() != null && !user.getPolicyNumber().isEmpty()) {
+            System.out.println("1");
             identifier = user.getPolicyNumber();
             Optional<PolicyHolder> optionalPolicyHolder = policyHolderRepository.findPolicyHolderByPolicyNumber(user.getPolicyNumber());
             PolicyHolder policyHolder = optionalPolicyHolder.orElseThrow(() -> new EntityNotFoundException("policyholder not found"));
 
             foundUser = policyHolder.getUser();
         } else {
+            System.out.println("2");
             identifier = user.getEmail();
-            foundUser = userRepository.findByEmail(identifier); // Fetch user by email
+            foundUser = userRepository.findByEmail(identifier);
+
         }
 
-        // Authenticate the user
-        Authentication authentication = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(identifier, user.getPassword())
-        );
+//        // Authenticate the user
+//        Authentication authentication = authManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(identifier, user.getPassword())
+//        );
+
+        Authentication authentication;
+
+        try {
+             authentication = authManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(identifier, user.getPassword())
+            );
+
+            System.out.println("Authentication successful: " + authentication.isAuthenticated());
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return new ApiResponse<>(401, "Invalid credentials", null);
+        }
+
 
         if (authentication.isAuthenticated() && foundUser != null) {
+            System.out.println("3");
             String generatedToken = jwtService.generateToken(foundUser);
             AuthDto authDto = new AuthDto();
             authDto.setToken(generatedToken);
             return new ApiResponse<>(200, "success", authDto);
         } else {
+            System.out.println("4");
             return new ApiResponse<>(401, "Invalid credentials", null);
         }
     }

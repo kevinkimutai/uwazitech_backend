@@ -3,12 +3,14 @@ package io.ctrla.claims.services;
 
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
+import io.ctrla.claims.dto.insuranceadmin.InsuranceAdminResponseDto;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.HospitalAdmin;
 import io.ctrla.claims.entity.Insurance;
 import io.ctrla.claims.entity.InsuranceAdmin;
 import io.ctrla.claims.exceptions.NotFoundException;
+import io.ctrla.claims.mappers.InsuranceAdminMapper;
 import io.ctrla.claims.mappers.InsuranceMapper;
 import io.ctrla.claims.repo.InsuranceAdminRepository;
 import io.ctrla.claims.repo.InsuranceRepository;
@@ -28,11 +30,13 @@ public class InsuranceService {
     private final InsuranceRepository insuranceRepository;
     private final InsuranceMapper insuranceMapper;
     private final InsuranceAdminRepository insuranceAdminRepository;
+    private  final InsuranceAdminMapper insuranceAdminMapper;
 
-    public InsuranceService(InsuranceRepository insuranceRepository,InsuranceMapper insuranceMapper,InsuranceAdminRepository insuranceAdminRepository) {
+    public InsuranceService(InsuranceRepository insuranceRepository,InsuranceAdminMapper insuranceAdminMapper,InsuranceMapper insuranceMapper,InsuranceAdminRepository insuranceAdminRepository) {
         this.insuranceRepository = insuranceRepository;
         this.insuranceMapper = insuranceMapper;
         this.insuranceAdminRepository = insuranceAdminRepository;
+        this.insuranceAdminMapper = insuranceAdminMapper;
     }
 
     //Get All Registered Insurance Companies
@@ -184,7 +188,7 @@ public class InsuranceService {
 
 
     //Get Insurance Admins
-    public ApiResponse<List<InsuranceAdmin>> getInsuranceAdmins() {
+    public ApiResponse<List<InsuranceAdminResponseDto>> getInsuranceAdmins() {
         try {
             List<Insurance> insurances = insuranceRepository.findAll();
             if (insurances.isEmpty()) {
@@ -195,11 +199,12 @@ public class InsuranceService {
                     .flatMap(hospital -> hospital.getInsuranceAdmins().stream())
                     .collect(Collectors.toList());
 
+List<InsuranceAdminResponseDto> insuranceResponseDtos = insuranceAdminMapper.toInsuranceAdminDto(insuranceAdmins);
             // Return success response
             return new ApiResponse<>(
                     200,
                     "success",
-                    insuranceAdmins);
+                    insuranceResponseDtos);
         } catch (NotFoundException nfe) {
             // Handle not found scenario
             return new ApiResponse<>(404, nfe.getMessage(), null);

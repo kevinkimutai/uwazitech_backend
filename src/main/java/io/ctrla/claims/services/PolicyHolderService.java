@@ -3,9 +3,7 @@ package io.ctrla.claims.services;
 
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
-import io.ctrla.claims.dto.policyholder.CheckPwdPolicyHolder;
-import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
-import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
+import io.ctrla.claims.dto.policyholder.*;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.Invoice;
@@ -46,20 +44,18 @@ public class PolicyHolderService {
     }
 
     //Get PolicyHolder
-    public ApiResponse<PolicyHolderDto> getPolicyHolder() {
+    public ApiResponse<PolicyNumberDetails> getPolicyHolder() {
         try {
-
             Long userId = authService.getCurrentUserId();
-
             PolicyHolder pHolder = policyHolderRepository.findPolicyHolderByUserUserId(userId);
-            PolicyHolderDto policyHolderDto = policyHolderMapper.toPolicyHolderDto(pHolder);
 
+            PolicyNumberDetails policyNumberDetails = policyHolderMapper.toPolicyNumber(pHolder);
 
             // Return success response
             return new ApiResponse<>(
                     200,
                     "success",
-                    policyHolderDto );
+                    policyNumberDetails );
         } catch (NotFoundException nfe) {
             // Handle not found scenario
             return new ApiResponse<>(404, nfe.getMessage(), null);
@@ -73,17 +69,17 @@ public class PolicyHolderService {
 
 
     //Get PolicyHolders
-    public ApiResponse<List<PolicyHolder>> getAllPolicyHolders() {
+    public ApiResponse<List<PolicyHolderDetails>> getAllPolicyHolders() {
         try {
 
             List<PolicyHolder> pHolders = policyHolderRepository.findAll();
-            //List<PolicyHolderDto> pHoldersDto = policyHolderMapper.toPolicyHoldersDto(pHolders);
+            List<PolicyHolderDetails> pHoldersDetails = policyHolderMapper.toPolicyHolderDetailsDto(pHolders);
 
             // Return success response
             return new ApiResponse<>(
                     200,
                     "success",
-                    pHolders );
+                    pHoldersDetails );
         } catch (NotFoundException nfe) {
             // Handle not found scenario
             return new ApiResponse<>(404, nfe.getMessage(), null);

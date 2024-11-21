@@ -4,8 +4,11 @@ package io.ctrla.claims.controller;
 import io.ctrla.claims.dto.hospital.HospitalAdminDto;
 import io.ctrla.claims.dto.hospital.HospitalDto;
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
+import io.ctrla.claims.dto.hospitaladmin.HospitalAdminResponseDto;
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
+import io.ctrla.claims.dto.insuranceadmin.InsuranceAdminResponseDto;
+import io.ctrla.claims.dto.policyholder.PolicyHolderDetails;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
 import io.ctrla.claims.dto.response.ApiResponse;
@@ -161,8 +164,8 @@ public class AdminController {
     //Get All HospitalAdmins
     @GetMapping("/hospitaladmins")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<List<HospitalAdmin>>> getHospitalAdmins() {
-        ApiResponse<List<HospitalAdmin>> apiResponse = hospitalService.getHospitalAdmins();
+    public ResponseEntity<ApiResponse<List<HospitalAdminResponseDto>>> getHospitalAdmins() {
+        ApiResponse<List<HospitalAdminResponseDto>> apiResponse = hospitalService.getHospitalAdmins();
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }
@@ -179,19 +182,18 @@ public class AdminController {
     //Update HospitalAdmin
     @PatchMapping("/hospitaladmins/{hospitalAdminId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<HospitalAdmin>> updateHospitalAdmin(@Valid @PathVariable Long hospitalAdminId, @RequestBody HospitalAdminDto hospitalAdminDto) {
-        ApiResponse<HospitalAdmin> apiResponse = hospitalAdminService.updateHospitalAdmin(hospitalAdminId, hospitalAdminDto);
+    public ResponseEntity<ApiResponse<HospitalAdminResponseDto>> updateHospitalAdmin(@Valid @PathVariable Long hospitalAdminId, @RequestBody HospitalAdminDto hospitalAdminDto) {
+        ApiResponse<HospitalAdminResponseDto> apiResponse = hospitalAdminService.updateHospitalAdmin(hospitalAdminId, hospitalAdminDto);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }
 
 
-
     //Get All InsuranceAdmins
     @GetMapping("/insuranceadmins")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<List<InsuranceAdmin>>> getInsuranceAdmins() {
-        ApiResponse<List<InsuranceAdmin>> apiResponse = insuranceService.getInsuranceAdmins();
+    public ResponseEntity<ApiResponse<List<InsuranceAdminResponseDto>>> getInsuranceAdmins() {
+        ApiResponse<List<InsuranceAdminResponseDto>> apiResponse = insuranceService.getInsuranceAdmins();
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }
@@ -199,8 +201,8 @@ public class AdminController {
     //Update InsuranceAdmin
     @PatchMapping("/insuranceadmins/{insuranceAdminId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<InsuranceAdmin>> updateInsuranceAdmin(@Valid @PathVariable Long insuranceAdminId, @RequestBody HospitalAdminDto hospitalAdminDto) {
-        ApiResponse<InsuranceAdmin> apiResponse = insuranceAdminService.updateInsuranceAdmin(insuranceAdminId, hospitalAdminDto);
+    public ResponseEntity<ApiResponse<InsuranceAdminResponseDto>> updateInsuranceAdmin(@Valid @PathVariable Long insuranceAdminId, @RequestBody HospitalAdminDto hospitalAdminDto) {
+        ApiResponse<InsuranceAdminResponseDto> apiResponse = insuranceAdminService.updateInsuranceAdmin(insuranceAdminId, hospitalAdminDto);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }
@@ -219,8 +221,8 @@ public class AdminController {
     //Get All PolicyHolders
     @GetMapping("/policyHolders")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<List<PolicyHolder>>> getPolicyHolderAdmins() {
-        ApiResponse<List<PolicyHolder>> apiResponse = policyHolderService.getAllPolicyHolders();
+    public ResponseEntity<ApiResponse<List<PolicyHolderDetails>>> getPolicyHolderAdmins() {
+        ApiResponse<List<PolicyHolderDetails>> apiResponse = policyHolderService.getAllPolicyHolders();
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }

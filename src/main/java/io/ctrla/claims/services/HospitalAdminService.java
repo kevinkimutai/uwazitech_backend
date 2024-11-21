@@ -4,11 +4,13 @@ package io.ctrla.claims.services;
 import io.ctrla.claims.dto.hospital.HospitalAdminDto;
 import io.ctrla.claims.dto.hospital.HospitalDto;
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
+import io.ctrla.claims.dto.hospitaladmin.HospitalAdminResponseDto;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.HospitalAdmin;
 import io.ctrla.claims.entity.User;
 import io.ctrla.claims.exceptions.NotFoundException;
+import io.ctrla.claims.mappers.HospitalAdminMapper;
 import io.ctrla.claims.repo.HospitalAdminRepository;
 import io.ctrla.claims.repo.HospitalRepository;
 import io.ctrla.claims.repo.UserRepository;
@@ -22,11 +24,12 @@ public class HospitalAdminService {
 
     private final HospitalAdminRepository hospitalAdminRepository;
     private final UserRepository userRepository;
+    private final HospitalAdminMapper hospitalAdminMapper;
 
-    public HospitalAdminService(HospitalAdminRepository hospitalRepository,UserRepository userRepository) {
+    public HospitalAdminService(HospitalAdminRepository hospitalRepository,HospitalAdminMapper hospitalAdminMapper,UserRepository userRepository) {
         this.hospitalAdminRepository = hospitalRepository;
         this.userRepository = userRepository;
-
+        this.hospitalAdminMapper = hospitalAdminMapper;
     }
 
     public ApiResponse<HospitalAdmin> getHospitalAdminById (Long hospitalAdminId){
@@ -51,7 +54,7 @@ public class HospitalAdminService {
 
     }
 
-    public ApiResponse<HospitalAdmin> updateHospitalAdmin(Long hospitalAdminId, HospitalAdminDto hospitalAdminDto) {
+    public ApiResponse<HospitalAdminResponseDto> updateHospitalAdmin(Long hospitalAdminId, HospitalAdminDto hospitalAdminDto) {
         try {
 
             HospitalAdmin foundHospitalAdmin = hospitalAdminRepository.findById(hospitalAdminId)
@@ -68,7 +71,9 @@ public class HospitalAdminService {
             // Save the updated hospital to the database
             userRepository.save(user);
 
-                      return new ApiResponse<>(200, "success", foundHospitalAdmin);
+            HospitalAdminResponseDto hospitalAdminResponseDto =  hospitalAdminMapper.toHospitalAdminRes(foundHospitalAdmin);
+
+                      return new ApiResponse<>(200, "success", hospitalAdminResponseDto);
         } catch (Exception e) {
             // Return error response for unexpected errors
             return new ApiResponse<>(500, "An error occurred while updating the hospital", null);

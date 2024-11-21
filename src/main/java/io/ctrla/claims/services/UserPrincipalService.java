@@ -29,35 +29,24 @@ public class UserPrincipalService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String identifier) throws UsernameNotFoundException {
-        // User user = userRepository.findByEmail(email);
+        // Try to find the user by policy number
+        User user = policyHolderRepository.findPolicyHolderByPolicyNumber(identifier)
+                .map(PolicyHolder::getUser)
+                .orElse(null);
 
-//        // Check if user is null and throw an exception if not found
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User not found with email: " + email);
-//        }
-
-
-        User user = null;
-
-        // Attempt to find by policy number
-        PolicyHolder policyHolder = policyHolderRepository.findPolicyHolderByPolicyNumber(identifier)
-                .orElseThrow(() -> new NotFoundException("No such PolicyHolder with that policy number"));
-        if (policyHolder != null) {
-            user = policyHolder.getUser();
-        }
-
-        // If not found by policy number, attempt to find by email
+        // If the user was not found by policy number, try finding them by email
         if (user == null) {
             user = userRepository.findByEmail(identifier);
         }
 
+        // If the user is still not found, throw an exception
         if (user == null) {
             throw new UsernameNotFoundException("User not found with identifier: " + identifier);
         }
 
-        // Create UserPrincipal with user, userId, and role
-        Long userId = user.getUserId(); // Assuming `User` has an `id` field
-        String role = user.getRole().toString(); // Assuming `User` has a `role` field
+        // Build UserPrincipal object with user, userId, and role
+        Long userId = user.getUserId(); // Assuming `User` has a `getUserId` method
+        String role = user.getRole().toString(); // Assuming `User` has a `getRole` method
 
         return new UserPrincipal(user, userId, role);
     }

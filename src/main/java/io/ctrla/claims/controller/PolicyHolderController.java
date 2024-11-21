@@ -5,6 +5,7 @@ import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
+import io.ctrla.claims.dto.policyholder.PolicyNumberDetails;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Invoice;
 import io.ctrla.claims.entity.PolicyHolder;
@@ -34,8 +35,8 @@ public class PolicyHolderController {
     //Get policyholder details
     @GetMapping("")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<PolicyHolderDto>> getPolicyHolder() {
-        ApiResponse<PolicyHolderDto> apiResponse = policyHolderService.getPolicyHolder();
+    public ResponseEntity<ApiResponse<PolicyNumberDetails>> getPolicyHolder() {
+        ApiResponse<PolicyNumberDetails> apiResponse = policyHolderService.getPolicyHolder();
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }

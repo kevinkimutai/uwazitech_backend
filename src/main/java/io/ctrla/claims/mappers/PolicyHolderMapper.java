@@ -2,9 +2,13 @@ package io.ctrla.claims.mappers;
 
 
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
+import io.ctrla.claims.dto.insuranceadmin.InsuranceAdminResponseDto;
+import io.ctrla.claims.dto.policyholder.PolicyHolderDetails;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderRes;
+import io.ctrla.claims.dto.policyholder.PolicyNumberDetails;
 import io.ctrla.claims.entity.Hospital;
+import io.ctrla.claims.entity.InsuranceAdmin;
 import io.ctrla.claims.entity.PolicyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -41,15 +45,34 @@ public class PolicyHolderMapper {
 
     }
 
-    public PolicyHolderRes toPolicyHolderRes(PolicyHolder policyHolder){
-        PolicyHolderRes policyHolderRes = new PolicyHolderRes();
 
-        policyHolderRes.setFirstName(policyHolder.getUser().getFirstName());
-        policyHolderRes.setLastName(policyHolder.getUser().getLastName());
-        policyHolderRes.setPolicyNumber(policyHolder.getPolicyNumber());
+    public PolicyHolderDetails toPolicyHolderRes(PolicyHolder policyHolder){
+        PolicyHolderDetails policyHolderDetails = new PolicyHolderDetails();
 
+        policyHolderDetails.setPolicyHolderId(policyHolder.getPolicyHolderId());
+        policyHolderDetails.setUser(userMapper.toUserResDto( policyHolder.getUser()));
+        policyHolderDetails.setInsurance(insuranceMapper.toInsuranceRes(policyHolder.getInsurance()));
 
-        return policyHolderRes;
+        return policyHolderDetails;
     }
+
+
+    public List<PolicyHolderDetails> toPolicyHolderDetailsDto(List<PolicyHolder> pHolders) {
+        return pHolders.stream()
+                .map(this::toPolicyHolderRes)
+                .collect(Collectors.toList());
+    }
+
+    public PolicyNumberDetails toPolicyNumber(PolicyHolder policyHolder){
+        PolicyNumberDetails pNumber = new PolicyNumberDetails();
+
+        pNumber.setPolicyNumber(policyHolder.getPolicyNumber());
+        pNumber.setUser(userMapper.toUserResDto( policyHolder.getUser()));
+        pNumber.setInsurance(insuranceMapper.toInsuranceRes(policyHolder.getInsurance()));
+        pNumber.setPolicyHolderId(policyHolder.getPolicyHolderId());
+
+        return pNumber;
+    }
+
 
 }

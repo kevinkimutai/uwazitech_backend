@@ -3,6 +3,7 @@ package io.ctrla.claims.services;
 
 import io.ctrla.claims.dto.hospital.HospitalDto;
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
+import io.ctrla.claims.dto.hospitaladmin.HospitalAdminResponseDto;
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.response.ApiResponse;
@@ -10,6 +11,7 @@ import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.HospitalAdmin;
 import io.ctrla.claims.entity.Insurance;
 import io.ctrla.claims.exceptions.NotFoundException;
+import io.ctrla.claims.mappers.HospitalAdminMapper;
 import io.ctrla.claims.mappers.HospitalMapper;
 import io.ctrla.claims.repo.HospitalAdminRepository;
 import io.ctrla.claims.repo.HospitalRepository;
@@ -30,13 +32,15 @@ public class HospitalService {
     private final HospitalMapper hospitalMapper;
     private final JWTService jwtService;
     private final HospitalAdminRepository hospitalAdminRepository;
+    private final HospitalAdminMapper hospitalAdminMapper;
 
     public HospitalService(
-            HospitalRepository hospitalRepository, HospitalMapper hospitalMapper,JWTService jwtService, HospitalAdminRepository hospitalAdminRepository) {
+            HospitalRepository hospitalRepository,HospitalAdminMapper hospitalAdminMapper, HospitalMapper hospitalMapper,JWTService jwtService, HospitalAdminRepository hospitalAdminRepository) {
         this.hospitalRepository = hospitalRepository;
         this.hospitalMapper = hospitalMapper;
         this.jwtService = jwtService;
         this.hospitalAdminRepository = hospitalAdminRepository;
+        this.hospitalAdminMapper = hospitalAdminMapper;
     }
 
 
@@ -176,9 +180,8 @@ public class HospitalService {
     }
 
     //Get Hospital Admins
-    public ApiResponse<List<HospitalAdmin>> getHospitalAdmins() {
+    public ApiResponse<List<HospitalAdminResponseDto>> getHospitalAdmins() {
         try {
-            System.out.println("Here hospitaladmins");
             List<Hospital> hospitals = hospitalRepository.findAll();
             if (hospitals.isEmpty()) {
                 throw new NotFoundException("No hospital companies found");
@@ -189,11 +192,13 @@ public class HospitalService {
                     .flatMap(hospital -> hospital.getHospitalAdmins().stream())
                     .collect(Collectors.toList());
 
+           List<HospitalAdminResponseDto> hospitalAdminsRes = hospitalAdminMapper.toHospitalAdminDto(hospitalAdmins);
+
             // Return success response
             return new ApiResponse<>(
                     200,
                     "success",
-                    hospitalAdmins);
+                    hospitalAdminsRes);
         } catch (NotFoundException nfe) {
             // Handle not found scenario
             return new ApiResponse<>(404, nfe.getMessage(), null);

@@ -1,11 +1,13 @@
 package io.ctrla.claims.services;
 
 import io.ctrla.claims.dto.hospital.HospitalAdminDto;
+import io.ctrla.claims.dto.insuranceadmin.InsuranceAdminResponseDto;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.HospitalAdmin;
 import io.ctrla.claims.entity.InsuranceAdmin;
 import io.ctrla.claims.entity.User;
 import io.ctrla.claims.exceptions.NotFoundException;
+import io.ctrla.claims.mappers.InsuranceAdminMapper;
 import io.ctrla.claims.repo.InsuranceAdminRepository;
 import io.ctrla.claims.repo.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,10 +21,12 @@ public class InsuranceAdminService {
 
     private final InsuranceAdminRepository insuranceAdminRepository;
     private final UserRepository userRepository;
+    private final InsuranceAdminMapper insuranceAdminMapper;
 
-    public InsuranceAdminService(InsuranceAdminRepository insuranceAdminRepository,UserRepository userRepository) {
+    public InsuranceAdminService(InsuranceAdminRepository insuranceAdminRepository, UserRepository userRepository, InsuranceAdminMapper insuranceAdminMapper) {
         this.insuranceAdminRepository = insuranceAdminRepository;
         this.userRepository = userRepository;
+        this.insuranceAdminMapper = insuranceAdminMapper;
     }
 
 
@@ -50,7 +54,7 @@ public class InsuranceAdminService {
 
 
     //Update InsuranceAdmin
-    public ApiResponse<InsuranceAdmin> updateInsuranceAdmin(Long insuranceAdminId, HospitalAdminDto hospitalAdminDto) {
+    public ApiResponse<InsuranceAdminResponseDto> updateInsuranceAdmin(Long insuranceAdminId, HospitalAdminDto hospitalAdminDto) {
         try {
 
             InsuranceAdmin foundInsuranceAdmin = insuranceAdminRepository.findById(insuranceAdminId)
@@ -67,7 +71,9 @@ public class InsuranceAdminService {
             // Save the updated hospital to the database
             userRepository.save(user);
 
-            return new ApiResponse<>(200, "success", foundInsuranceAdmin);
+            InsuranceAdminResponseDto insuranceAdminResponseDto =  insuranceAdminMapper.toInsuranceAdminRes(foundInsuranceAdmin);
+
+            return new ApiResponse<>(200, "success", insuranceAdminResponseDto);
         } catch (Exception e) {
             // Return error response for unexpected errors
             return new ApiResponse<>(500, "An error occurred while updating the hospital", null);

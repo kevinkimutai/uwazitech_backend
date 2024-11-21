@@ -1,5 +1,6 @@
 package io.ctrla.claims.mappers;
 
+import io.ctrla.claims.dto.hospitaladmin.HospitalAdminUserDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.user.UserDto;
 import io.ctrla.claims.dto.user.UserResponseDto;
@@ -29,5 +30,16 @@ public class UserMapper {
         userResponseDto.setLastName(user.getLastName());
 
         return userResponseDto;
+    }
+
+    public HospitalAdminUserDto toUserResDto(User user) {
+        HospitalAdminUserDto userRes = new HospitalAdminUserDto();
+
+        userRes.setEmail(user.getEmail());
+        userRes.setFirstName(user.getFirstName());
+        userRes.setLastName(user.getLastName());
+        userRes.setVerified(user.getIsVerified());
+
+        return userRes;
     }
 }
