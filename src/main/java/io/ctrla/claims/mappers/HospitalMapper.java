@@ -21,6 +21,7 @@ public class HospitalMapper {
 
         hospitalRes.setHospitalId(hospital.getHospitalId());
         hospitalRes.setHospitalName(hospital.getHospitalName());
+        hospitalRes.setHospitalBranch(hospital.getHospitalBranch());
         hospitalRes.setHospitalAddress(hospital.getHospitalAddress());
         hospitalRes.setCreatedAt(hospital.getCreatedAt());
         hospitalRes.setUpdatedAt(hospital.getUpdatedAt());

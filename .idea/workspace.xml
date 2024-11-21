@@ -5,76 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7002104f-b275-440c-8a21-de7aeab7f02e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/hospital/HospitalAdminDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/policyholder/CheckPwdPolicyHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/policyholder/PolicyHolderRes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/preauth/PreAuthDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/preauth/PreAuthResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/PreAuth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PreAuthMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/PreAuthRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalAdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceAdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PreAuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/hospital/HospitalAdminDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/CheckPwdPolicyHolder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/PolicyHolderRes.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthResponseDto.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PreAuth.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PreAuthMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PreAuthRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalAdminService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceAdminService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PreAuthService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/JwtFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/HospitalAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/HospitalAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/PolicyHolderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/PolicyHolderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/user/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Hospital.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Hospital.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Insurance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Insurance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/PolicyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/PolicyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PolicyHolderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PolicyHolderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalAdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalAdminRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/HospitalRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/PolicyHolderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/PolicyHolderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/hospital/HospitalResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/hospital/HospitalResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/HospitalMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/HospitalMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PolicyHolderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PolicyHolderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/UserPrincipalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/UserPrincipalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/JwtFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalAdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceAdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/PolicyHolderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/PolicyHolderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/user/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/user/UserDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Hospital.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Hospital.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Insurance.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Insurance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PolicyHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PolicyHolder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PolicyHolderMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PolicyHolderMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PolicyHolderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PolicyHolderRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/AuthService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PolicyHolderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PolicyHolderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/UserPrincipalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/UserPrincipalService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-io.ctrla.claims.ClaimsApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-io.ctrla.claims.ClaimsApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/io.ctrla.claims.ClaimsApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/io.ctrla.claims.ClaimsApplicationTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PreAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PreAuthService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,6 +170,8 @@
       <workItem from="1731393940667" duration="1246000" />
       <workItem from="1731501129126" duration="7463000" />
       <workItem from="1731985997825" duration="1425000" />
+      <workItem from="1732129722503" duration="3273000" />
+      <workItem from="1732133032408" duration="2189000" />
     </task>
     <servers />
   </component>

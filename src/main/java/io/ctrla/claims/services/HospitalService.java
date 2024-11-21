@@ -178,7 +178,8 @@ public class HospitalService {
     //Get Hospital Admins
     public ApiResponse<List<HospitalAdmin>> getHospitalAdmins() {
         try {
-           List<Hospital> hospitals = hospitalRepository.findAll();
+            System.out.println("Here hospitaladmins");
+            List<Hospital> hospitals = hospitalRepository.findAll();
             if (hospitals.isEmpty()) {
                 throw new NotFoundException("No hospital companies found");
             }
