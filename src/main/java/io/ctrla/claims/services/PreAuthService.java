@@ -17,11 +17,13 @@ import io.ctrla.claims.repo.InsuranceRepository;
 import io.ctrla.claims.repo.PolicyHolderRepository;
 import io.ctrla.claims.repo.PreAuthRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class PreAuthService {
 
@@ -45,6 +47,8 @@ public class PreAuthService {
     //Create PreAuth
     public ApiResponse<PreAuth> createPreAuth(PreAuthDto preAuthDto,Long hospitalId) {
         try{
+            System.out.println("IDDD :"+hospitalId);
+
             //Get Hospital
             Optional<Hospital> optionalHospital = hospitalRepository.findById(hospitalId);
             // If hospital is present, get it, otherwise throw an exception
@@ -63,15 +67,16 @@ public class PreAuthService {
             preAuthDto.setInsurance(insurance);
             preAuthDto.setPolicyHolder(policyHolder);
 
+            System.out.println("PREAUTH :"+preAuthDto);
 
             PreAuth newPreAuth = preAuthRepository.save(preAuthMapper.toPreAuth(preAuthDto));
 
             return new ApiResponse<>(200,"success",newPreAuth);
         }
         catch (Exception e) {
-
+        log.error("e: ", e);
             // Return error response for unexpected errors
-            return new ApiResponse<>(500, "An error occurred while creating preauth", null);
+            return new ApiResponse<>(500, "An error occurred while creating preauth ", null);
         }
     }
 

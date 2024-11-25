@@ -21,7 +21,6 @@ public class PreAuth {
     @JoinColumn(name = "policyholder_id_fkey", referencedColumnName = "policy_holder_id", nullable = false)
     private PolicyHolder policyHolder;
 
-
     // Many-to-one relationship with Insurance
     @ManyToOne
     @JoinColumn(name = "insurance_id_fkey", referencedColumnName = "insurance_id", nullable = false)

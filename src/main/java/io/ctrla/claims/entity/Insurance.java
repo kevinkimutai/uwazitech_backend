@@ -4,6 +4,7 @@ package io.ctrla.claims.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -30,11 +31,17 @@ public class Insurance {
     private String phoneNumber;
 
     // One-to-many relationship with Insurance entity
+    @ToString.Exclude
     @OneToMany(mappedBy = "insurance")
     private List<InsuranceAdmin> insuranceAdmins;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "insurance")
     private List<PreAuth> preAuths;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "insurance", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Invoice> invoices;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

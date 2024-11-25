@@ -14,6 +14,9 @@ public class Invoice {
     @Column(name = "invoice_id")
     private Long invoiceId;
 
+    @Column(name = "invoice_number")
+    private String invoiceNumber;
+
     @Column(name = "invoice_url")
     private String invoiceUrl;
 
@@ -26,6 +29,17 @@ public class Invoice {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "insurance_id", referencedColumnName = "insurance_id")
     private Insurance insurance;
+
+    // Many-to-One relationship with Hospital
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hospital_id", referencedColumnName = "hospital_id")
+    private Hospital  hospital;
+
+    // One-to-one relationship with Preauth
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "preauth_id", referencedColumnName = "pre_auth_id")
+    private PreAuth  preauth;
 
     @Column(name = "invoice_items")
     // One-to-many relationship with InvoiceItem

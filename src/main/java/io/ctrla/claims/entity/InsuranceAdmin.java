@@ -2,6 +2,7 @@ package io.ctrla.claims.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -15,11 +16,13 @@ public class InsuranceAdmin {
     private Long insuranceAdminId;
 
     // One-to-one relationship with User entity
+    @ToString.Exclude
     @OneToOne
     @JoinColumn(name = "user_id_fkey", referencedColumnName = "user_id", nullable = false)
     private User user;
 
     // Many-to-one relationship with Insurance entity
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "insurance_id_fkey", referencedColumnName = "insurance_id", nullable = false)
     private Insurance insurance;

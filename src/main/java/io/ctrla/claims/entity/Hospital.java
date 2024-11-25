@@ -3,6 +3,7 @@ package io.ctrla.claims.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,11 +26,17 @@ public class Hospital {
     private String hospitalBranch;
 
     // One-to-many relationship with HospitalAdmin entity
+    @ToString.Exclude
     @OneToMany(mappedBy = "hospital")
     private List<HospitalAdmin> hospitalAdmins;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "hospital")
     private List<PreAuth> preAuths;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Invoice> invoices;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
