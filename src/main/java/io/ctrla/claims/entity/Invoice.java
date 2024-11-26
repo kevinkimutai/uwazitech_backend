@@ -2,6 +2,7 @@ package io.ctrla.claims.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,26 +22,31 @@ public class Invoice {
     private String invoiceUrl;
 
     // Many-to-One relationship with PolicyHolder
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "policy_holder_id", referencedColumnName = "policy_holder_id")
     private PolicyHolder policyHolder;
 
     // Many-to-One relationship with Insurance
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "insurance_id", referencedColumnName = "insurance_id")
     private Insurance insurance;
 
     // Many-to-One relationship with Hospital
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id", referencedColumnName = "hospital_id")
     private Hospital  hospital;
 
     // One-to-one relationship with Preauth
+    @ToString.Exclude
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "preauth_id", referencedColumnName = "pre_auth_id")
     private PreAuth  preauth;
 
+    @ToString.Exclude
     @Column(name = "invoice_items")
     // One-to-many relationship with InvoiceItem
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

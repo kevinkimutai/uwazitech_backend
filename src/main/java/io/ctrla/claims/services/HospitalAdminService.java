@@ -6,10 +6,12 @@ import io.ctrla.claims.dto.hospital.HospitalDto;
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
 import io.ctrla.claims.dto.hospitaladmin.HospitalAdminResponseDto;
 import io.ctrla.claims.dto.invoiceDto.InvoiceDto;
+import io.ctrla.claims.dto.invoiceDto.UploadInvoiceDtoResponse;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.*;
 import io.ctrla.claims.exceptions.NotFoundException;
 import io.ctrla.claims.mappers.HospitalAdminMapper;
+import io.ctrla.claims.mappers.InvoiceMapper;
 import io.ctrla.claims.repo.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.core.io.FileSystemResource;
@@ -27,6 +29,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -40,6 +44,7 @@ public class HospitalAdminService {
     private final InvoiceRepository invoiceRepository;
     private final HospitalRepository hospitalRepository;
     private final PreAuthRepository preAuthRepository;
+    private final InvoiceMapper invoiceMapper;
     private static final String UPLOAD_DIR = "uploads";
 
     public HospitalAdminService(HospitalAdminRepository hospitalAdminRepository,
@@ -48,9 +53,10 @@ public class HospitalAdminService {
                                 PolicyHolderRepository policyHolderRepository,
                                 InsuranceRepository insuranceRepository,
                                 InvoiceRepository invoiceRepository,
-                                HospitalRepository hospitalRepository, PreAuthRepository preAuthRepository) {
+                                HospitalRepository hospitalRepository, PreAuthRepository preAuthRepository, InvoiceMapper invoiceMapper) {
         this.hospitalRepository = hospitalRepository;
         this.preAuthRepository = preAuthRepository;
+        this.invoiceMapper = invoiceMapper;
         File uploadDir = new File(UPLOAD_DIR);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -113,23 +119,18 @@ public class HospitalAdminService {
         }
     }
 
-    public ApiResponse<Invoice> uploadInvoice(MultipartFile invoiceFile,
-                                              String policyNumber,
-                                              Long insuranceId,
-                                              Long preauthId,
-                                              String invoiceNumber,
-                                              Long hospitalId) {
+    public ApiResponse<UploadInvoiceDtoResponse> uploadInvoice(MultipartFile invoiceFile,
+                                                               String policyNumber,
+                                                               Long insuranceId,
+                                                               Long preauthId,
+                                                               String invoiceNumber,
+                                                               Long hospitalId) {
         try {
-
-
-
             // Validate the file
             if (invoiceFile == null || invoiceFile.isEmpty()) {
                 return new ApiResponse<>(400, "missing invoice_file", null);
             }
-
-
-            //Check if preauth is approved
+            //Check if preauth is Present
          Optional<PreAuth> foundPreAuth =  preAuthRepository.findById(preauthId);
             if (foundPreAuth.isEmpty()) {
                 return new ApiResponse<>(404, "PreAuth not found", null);
@@ -141,10 +142,22 @@ public class HospitalAdminService {
                 return new ApiResponse<>(400, "PreAuth not approved", null);
             }
 
-                // Save the file locally
-                String originalFilename = invoiceFile.getOriginalFilename();
-                Path filePath = Paths.get(UPLOAD_DIR, originalFilename);
-                Files.copy(invoiceFile.getInputStream(), filePath);
+            // Save the file locally
+            String originalFilename = invoiceFile.getOriginalFilename();
+            // Generate a timestamp to make the filename unique
+            String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+            // Extract the file extension from the original filename
+            assert originalFilename != null;
+            String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            // Create a new filename by adding the timestamp
+            String newFilename = timestamp + "_" + originalFilename;
+            // Set the file path with the new unique filename
+            Path filePath = Paths.get(UPLOAD_DIR, newFilename);
+
+
+
+            // Save the file
+            Files.copy(invoiceFile.getInputStream(), filePath);
 
             //Get INsurance
             Insurance insurance = insuranceRepository.findById(insuranceId).get();
@@ -180,6 +193,9 @@ public class HospitalAdminService {
             invoice.setPreauth(preAuth);
 
           Invoice savedInvoice =  invoiceRepository.save(invoice);
+          UploadInvoiceDtoResponse uploadedInvoice = invoiceMapper.toInvoiceDtoRes(savedInvoice);
+
+
 
 //          //Send File to AI API
 //            String aiApiUrl = "https://project-uwazitek.onrender.com/process-invoice";
@@ -205,7 +221,7 @@ public class HospitalAdminService {
 //                return new ApiResponse<>(500, "Invoice saved but failed to send file to AI API", null);
 //            }
 
-                return new ApiResponse<>(200, "success", savedInvoice);
+                return new ApiResponse<>(200, "success", uploadedInvoice);
             } catch (Exception e) {
                 // Return error response for unexpected errors
                 return new ApiResponse<>(500, "An error occurred while updating the hospital", null);

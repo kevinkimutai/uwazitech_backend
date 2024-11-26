@@ -35,30 +35,6 @@ public class SecurityConfig {
         this.jwtFilter = jwtFilter;
     }
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .cors(c -> c.configurationSource(corsConfigurationSource()))
-//                .authorizeHttpRequests(request ->
-//                        request
-//                                .requestMatchers("/api/v1/auth/signup",
-//                                        "/api/v1/auth/login",
-//                                        "api/v1/hospitals",
-//                                        "api/v1/insurance",
-//                                        "/error")
-//                                .permitAll()
-//                                .requestMatchers("/api/v1/hospitals/**")
-//                                .hasAnyRole("HOSPITAL_ADMIN", "ADMIN")
-//                                .requestMatchers("/api/v1/insurance/**")
-//                                .hasAnyRole("INSURANCE_ADMIN", "ADMIN")
-//                                .anyRequest().authenticated()
-//                )
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http

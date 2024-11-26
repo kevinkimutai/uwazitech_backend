@@ -14,6 +14,10 @@ public class InsuranceResponseDto {
     private Long insuranceId;
 @JsonProperty("insurance_name")
     private String insuranceName;
+@JsonProperty("address")
+    private String address;
+@JsonProperty("contact_phone_number")
+    private String phoneNumber;
 @JsonProperty("created_at")
     private LocalDateTime createdAt;
  @JsonProperty("updated_at")

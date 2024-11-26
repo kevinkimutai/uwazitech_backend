@@ -15,6 +15,8 @@ public class InsuranceMapper {
         InsuranceResponseDto insuranceRes = new InsuranceResponseDto();
         insuranceRes.setInsuranceId(insurance.getInsuranceId());
         insuranceRes.setInsuranceName(insurance.getInsuranceName());
+        insuranceRes.setAddress(insuranceRes.getAddress());
+        insuranceRes.setPhoneNumber(insurance.getPhoneNumber());
         insuranceRes.setCreatedAt(insurance.getCreatedAt());
         insuranceRes.setUpdatedAt(insurance.getUpdatedAt());
 

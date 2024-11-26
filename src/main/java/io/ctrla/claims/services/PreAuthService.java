@@ -5,6 +5,7 @@ import io.ctrla.claims.dto.hospital.HospitalDto;
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.preauth.PreAuthDto;
+import io.ctrla.claims.dto.preauth.PreAuthResponseDto;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.Insurance;
@@ -45,7 +46,7 @@ public class PreAuthService {
 
 
     //Create PreAuth
-    public ApiResponse<PreAuth> createPreAuth(PreAuthDto preAuthDto,Long hospitalId) {
+    public ApiResponse<PreAuthResponseDto> createPreAuth(PreAuthDto preAuthDto, Long hospitalId) {
         try{
             System.out.println("IDDD :"+hospitalId);
 
@@ -70,8 +71,9 @@ public class PreAuthService {
             System.out.println("PREAUTH :"+preAuthDto);
 
             PreAuth newPreAuth = preAuthRepository.save(preAuthMapper.toPreAuth(preAuthDto));
+            PreAuthResponseDto preauthRes = preAuthMapper.toPreAuthRes(newPreAuth);
 
-            return new ApiResponse<>(200,"success",newPreAuth);
+            return new ApiResponse<>(200,"success",preauthRes);
         }
         catch (Exception e) {
         log.error("e: ", e);
@@ -107,7 +109,7 @@ public class PreAuthService {
 
 
     //Get All Preauths of Hospital
-    public ApiResponse<List<PreAuth>> getAllPreAuthsByHospital(Long hospitalId) {
+    public ApiResponse<List<PreAuthResponseDto>> getAllPreAuthsByHospital(Long hospitalId) {
         try {
             List<PreAuth> preauths = preAuthRepository.findPreAuthsByHospitalHospitalId(hospitalId);
 
@@ -115,11 +117,13 @@ public class PreAuthService {
                 throw new NotFoundException("No preauths found");
             }
 
+            List<PreAuthResponseDto> preauthsRes = preAuthMapper.toPreAuthsRes(preauths);
+
             // Return success response
             return new ApiResponse<>(
                     200,
                     "success",
-                    preauths);
+                    preauthsRes);
         } catch (NotFoundException nfe) {
             // Handle not found scenario
             return new ApiResponse<>(404, nfe.getMessage(), null);
