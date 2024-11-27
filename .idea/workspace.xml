@@ -5,21 +5,100 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7002104f-b275-440c-8a21-de7aeab7f02e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/repo/InvoiceItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/HospitalAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/HospitalAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/controller/InsuranceAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/invoiceDto/UploadInvoiceDtoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/invoiceDto/UploadInvoiceDtoResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/policyholder/PolicyNumberDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/dto/policyholder/PolicyNumberDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Invoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/Invoice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/InvoiceItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/entity/InvoiceItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/InvoiceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/InvoiceMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PolicyHolderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/mappers/PolicyHolderMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalAdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalAdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/HospitalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalAdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthResponseDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthResponseDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/InsuranceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/InsuranceMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PreAuthMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PreAuthMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalAdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalAdminService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PreAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PreAuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/InsuranceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PolicyHolderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ctrla/claims/services/PolicyHolderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/claims-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/JwtFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/config/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/AdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/AuthController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalAdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/HospitalController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceAdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/InsuranceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/controller/PolicyHolderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/AuthDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/hospital/HospitalAdminDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/hospital/HospitalDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/hospital/HospitalResponseDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/hospitaladmin/HospitalAdminResponseDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/hospitaladmin/HospitalAdminUserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/insurance/InsuranceDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/insurance/InsuranceResponseDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/insuranceadmin/InsuranceAdminResponseDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/invoiceDto/InvoiceDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/invoiceDto/UploadInvoiceDtoResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/CheckPwdPolicyHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/PolicyHolderDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/PolicyHolderDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/PolicyHolderRes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/policyholder/PolicyNumberDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/preauth/PreAuthResponseDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/response/ApiResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/user/UserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/dto/user/UserResponseDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/AdminEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Hospital.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/HospitalAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Insurance.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/InsuranceAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Invoice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/InvoiceItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PolicyHolder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/PreAuth.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/Roles.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/SignUpTypes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/entity/UserPrincipal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/exceptions/NotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/HospitalAdminMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/HospitalMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/InsuranceAdminMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/InsuranceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/InvoiceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PolicyHolderMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/PreAuthMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/mappers/UserMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/AdminRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/HospitalAdminRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/HospitalRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/InsuranceAdminRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/InsuranceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/InvoiceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PolicyHolderRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/PreAuthRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/repo/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/AdminService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/AuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalAdminService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/HospitalService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceAdminService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/InsuranceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/JWTService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PolicyHolderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/PreAuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/ctrla/claims/services/UserPrincipalService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-io.ctrla.claims.ClaimsApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/io.ctrla.claims.ClaimsApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/io/ctrla/claims/ClaimsApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,38 +140,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ClaimsApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.claims.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ClaimsApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kevin-kimutai/learn/eclectics/backend/claims.io&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ClaimsApplication.executor": "Run",
+    "Docker.claims.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "Spring Boot.ClaimsApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/kevin-kimutai/learn/eclectics/backend/claims.io",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "org.rust.first.attach.projects": "true",
+    "settings.editor.selected.configurable": "editing.templates",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.ctrla.claims.config" />

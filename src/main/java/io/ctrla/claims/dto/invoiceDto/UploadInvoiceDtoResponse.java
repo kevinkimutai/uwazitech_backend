@@ -7,12 +7,11 @@ import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.policyholder.PolicyHolderDto;
 import io.ctrla.claims.dto.preauth.PreAuthDetails;
 import io.ctrla.claims.dto.preauth.PreAuthResponseDto;
-import io.ctrla.claims.entity.Hospital;
-import io.ctrla.claims.entity.Insurance;
-import io.ctrla.claims.entity.PolicyHolder;
-import io.ctrla.claims.entity.PreAuth;
+import io.ctrla.claims.entity.*;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class UploadInvoiceDtoResponse {
@@ -33,5 +32,11 @@ public class UploadInvoiceDtoResponse {
     private HospitalResponseDto hospital;
 
     private PreAuthDetails preauth;
+
+    private List<InvoiceItem> invoiceItems;
+
+    private String bankName;
+
+    private String bankAccountNumber;
 
 }

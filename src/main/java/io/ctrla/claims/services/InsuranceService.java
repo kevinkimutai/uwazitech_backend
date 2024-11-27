@@ -4,6 +4,7 @@ package io.ctrla.claims.services;
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
 import io.ctrla.claims.dto.insuranceadmin.InsuranceAdminResponseDto;
+import io.ctrla.claims.dto.invoiceDto.UploadInvoiceDtoResponse;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.HospitalAdmin;
@@ -12,6 +13,7 @@ import io.ctrla.claims.entity.InsuranceAdmin;
 import io.ctrla.claims.exceptions.NotFoundException;
 import io.ctrla.claims.mappers.InsuranceAdminMapper;
 import io.ctrla.claims.mappers.InsuranceMapper;
+import io.ctrla.claims.mappers.InvoiceMapper;
 import io.ctrla.claims.repo.InsuranceAdminRepository;
 import io.ctrla.claims.repo.InsuranceRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -31,12 +33,14 @@ public class InsuranceService {
     private final InsuranceMapper insuranceMapper;
     private final InsuranceAdminRepository insuranceAdminRepository;
     private  final InsuranceAdminMapper insuranceAdminMapper;
+    private final InvoiceMapper invoiceMapper;
 
-    public InsuranceService(InsuranceRepository insuranceRepository,InsuranceAdminMapper insuranceAdminMapper,InsuranceMapper insuranceMapper,InsuranceAdminRepository insuranceAdminRepository) {
+    public InsuranceService(InsuranceRepository insuranceRepository, InsuranceAdminMapper insuranceAdminMapper, InsuranceMapper insuranceMapper, InsuranceAdminRepository insuranceAdminRepository, InvoiceMapper invoiceMapper) {
         this.insuranceRepository = insuranceRepository;
         this.insuranceMapper = insuranceMapper;
         this.insuranceAdminRepository = insuranceAdminRepository;
         this.insuranceAdminMapper = insuranceAdminMapper;
+        this.invoiceMapper = invoiceMapper;
     }
 
     //Get All Registered Insurance Companies
@@ -215,5 +219,30 @@ List<InsuranceAdminResponseDto> insuranceResponseDtos = insuranceAdminMapper.toI
             return new ApiResponse<>(500, "An error occurred while fetching insurance admins", null);
         }
     }
+
+    //Get Insurance Admins
+    public ApiResponse<List<UploadInvoiceDtoResponse>> getInsuranceInvoices(Long insuranceId) {
+        try{
+            Optional<Insurance> optionalInsurance = insuranceRepository.findById(insuranceId);
+
+            // If hospital is present, get it, otherwise throw an exception
+            Insurance insurance = optionalInsurance.orElseThrow(() -> new EntityNotFoundException("Insurance not found"));
+
+            // Map the hospital to the required result
+            List<UploadInvoiceDtoResponse> result = invoiceMapper.toInvoiceDtoResList(insurance.getInvoices());
+
+            return new ApiResponse<>(200,"success",result);
+        }
+        catch(NotFoundException e){
+            return new ApiResponse<>(404, e.getMessage(), null);
+        }
+        catch (Exception e) {
+
+            // Return error response for unexpected errors
+            return new ApiResponse<>(500, "An error occurred while fetching insurance with Id", null);
+        }
+
+    }
+
 
 }

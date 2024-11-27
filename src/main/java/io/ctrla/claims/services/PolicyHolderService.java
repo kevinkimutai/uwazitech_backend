@@ -49,6 +49,8 @@ public class PolicyHolderService {
             Long userId = authService.getCurrentUserId();
             PolicyHolder pHolder = policyHolderRepository.findPolicyHolderByUserUserId(userId);
 
+            System.out.println("PPHHOOLDER"+pHolder);
+
             PolicyNumberDetails policyNumberDetails = policyHolderMapper.toPolicyNumber(pHolder);
 
             // Return success response

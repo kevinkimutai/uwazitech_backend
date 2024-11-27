@@ -70,6 +70,7 @@ public class HospitalAdminController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }
 
+
     //Update Hospital
     @PatchMapping("/{hospitalId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -101,11 +102,11 @@ public class HospitalAdminController {
 
 
     //Invoices
-    //Get All preauth of hospital
+    //Get All invoices of hospital
     @GetMapping("/{hospitalId}/invoices")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse<List<PreAuthResponseDto>>> getHospitalInvoices(@PathVariable Long hospitalId) {
-        ApiResponse<List<PreAuthResponseDto>> apiResponse = hospitalService.getInvoices(hospitalId);
+    public ResponseEntity<ApiResponse<List<UploadInvoiceDtoResponse>>> getHospitalInvoices(@PathVariable Long hospitalId) {
+        ApiResponse<List<UploadInvoiceDtoResponse>> apiResponse = hospitalService.getHospitalInvoices(hospitalId);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }

@@ -6,6 +6,7 @@ import io.ctrla.claims.dto.hospital.HospitalResponseDto;
 import io.ctrla.claims.dto.hospitaladmin.HospitalAdminResponseDto;
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
+import io.ctrla.claims.dto.invoiceDto.UploadInvoiceDtoResponse;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.Hospital;
 import io.ctrla.claims.entity.HospitalAdmin;
@@ -13,6 +14,7 @@ import io.ctrla.claims.entity.Insurance;
 import io.ctrla.claims.exceptions.NotFoundException;
 import io.ctrla.claims.mappers.HospitalAdminMapper;
 import io.ctrla.claims.mappers.HospitalMapper;
+import io.ctrla.claims.mappers.InvoiceMapper;
 import io.ctrla.claims.repo.HospitalAdminRepository;
 import io.ctrla.claims.repo.HospitalRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,14 +35,16 @@ public class HospitalService {
     private final JWTService jwtService;
     private final HospitalAdminRepository hospitalAdminRepository;
     private final HospitalAdminMapper hospitalAdminMapper;
+    private final InvoiceMapper invoiceMapper;
 
     public HospitalService(
-            HospitalRepository hospitalRepository,HospitalAdminMapper hospitalAdminMapper, HospitalMapper hospitalMapper,JWTService jwtService, HospitalAdminRepository hospitalAdminRepository) {
+            HospitalRepository hospitalRepository, HospitalAdminMapper hospitalAdminMapper, HospitalMapper hospitalMapper, JWTService jwtService, HospitalAdminRepository hospitalAdminRepository, InvoiceMapper invoiceMapper) {
         this.hospitalRepository = hospitalRepository;
         this.hospitalMapper = hospitalMapper;
         this.jwtService = jwtService;
         this.hospitalAdminRepository = hospitalAdminRepository;
         this.hospitalAdminMapper = hospitalAdminMapper;
+        this.invoiceMapper = invoiceMapper;
     }
 
 
@@ -211,6 +215,28 @@ public class HospitalService {
     }
 
     // Get Hospital invoices
-    //public ApiResponse<List<HospitalAdminResponseDto>> getHospitalInvoices() {}
+    public ApiResponse<List<UploadInvoiceDtoResponse>> getHospitalInvoices(Long hospitalId) {
+
+       try{
+        Optional<Hospital> optionalHospital = hospitalRepository.findById(hospitalId);
+
+        // If hospital is present, get it, otherwise throw an exception
+        Hospital hospital = optionalHospital.orElseThrow(() -> new EntityNotFoundException("Hospital not found"));
+
+        // Map the hospital to the required result
+        List<UploadInvoiceDtoResponse> result = invoiceMapper.toInvoiceDtoResList(hospital.getInvoices());
+
+        return new ApiResponse<>(200,"success",result);
+    }
+        catch(NotFoundException e){
+        return new ApiResponse<>(404, e.getMessage(), null);
+    }
+        catch (Exception e) {
+
+        // Return error response for unexpected errors
+        return new ApiResponse<>(500, "An error occurred while fetching insurance with Id", null);
+    }
+
+}
 
 }

@@ -21,10 +21,12 @@ public class PolicyHolderMapper {
 
     private final InsuranceMapper insuranceMapper;
     private final UserMapper userMapper;
+    private final InvoiceMapper invoiceMapper;
 
-    public PolicyHolderMapper(InsuranceMapper insuranceMapper,UserMapper userMapper) {
+    public PolicyHolderMapper(InsuranceMapper insuranceMapper, UserMapper userMapper, InvoiceMapper invoiceMapper) {
         this.insuranceMapper = insuranceMapper;
         this.userMapper = userMapper;
+        this.invoiceMapper = invoiceMapper;
     }
 
     public PolicyHolderDto toPolicyHolderDto(PolicyHolder policyHolder) {
@@ -70,7 +72,7 @@ public class PolicyHolderMapper {
         pNumber.setUser(userMapper.toUserResDto( policyHolder.getUser()));
         pNumber.setInsurance(insuranceMapper.toInsuranceRes(policyHolder.getInsurance()));
         pNumber.setPolicyHolderId(policyHolder.getPolicyHolderId());
-        pNumber.setInvoice(policyHolder.getInvoices());
+        pNumber.setInvoice(invoiceMapper.toInvoiceDtoResList(policyHolder.getInvoices()));
 
         return pNumber;
     }

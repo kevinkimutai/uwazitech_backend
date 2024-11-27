@@ -3,6 +3,7 @@ package io.ctrla.claims.dto.policyholder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.ctrla.claims.dto.hospitaladmin.HospitalAdminUserDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
+import io.ctrla.claims.dto.invoiceDto.UploadInvoiceDtoResponse;
 import io.ctrla.claims.entity.Invoice;
 import lombok.Data;
 
@@ -21,6 +22,5 @@ public class PolicyNumberDetails {
 
     @JsonProperty("insurance")
     private InsuranceResponseDto insurance;
-
-    private List<Invoice> invoice;
+    private List<UploadInvoiceDtoResponse> invoice;
 }

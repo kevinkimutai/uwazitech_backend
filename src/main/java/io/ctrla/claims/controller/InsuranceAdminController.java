@@ -2,6 +2,7 @@ package io.ctrla.claims.controller;
 
 import io.ctrla.claims.dto.insurance.InsuranceDto;
 import io.ctrla.claims.dto.insurance.InsuranceResponseDto;
+import io.ctrla.claims.dto.invoiceDto.UploadInvoiceDtoResponse;
 import io.ctrla.claims.dto.preauth.PreAuthDto;
 import io.ctrla.claims.dto.response.ApiResponse;
 import io.ctrla.claims.entity.PreAuth;
@@ -39,6 +40,15 @@ public class InsuranceAdminController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
     }
 
+
+    //Get Insurance Invoices
+    @GetMapping("/{insuranceId}/invoices")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<List<UploadInvoiceDtoResponse>>> getInsuranceInvoices(@PathVariable Long insuranceId) {
+        ApiResponse<List<UploadInvoiceDtoResponse>> apiResponse = insuranceService.getInsuranceInvoices(insuranceId);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
 
     //Update Insurance
     @PatchMapping("/{insuranceId}")

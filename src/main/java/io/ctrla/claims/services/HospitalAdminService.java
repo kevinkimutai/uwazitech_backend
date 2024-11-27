@@ -33,7 +33,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -199,7 +201,7 @@ public class HospitalAdminService {
             invoice.setPreauth(preAuth);
 
           Invoice savedInvoice =  invoiceRepository.save(invoice);
-          UploadInvoiceDtoResponse uploadedInvoice = invoiceMapper.toInvoiceDtoRes(savedInvoice);
+
 
 
 
@@ -239,7 +241,10 @@ public class HospitalAdminService {
 
                     // Fetch "Fraud Detection Results"
                     JsonNode fraudDetectionResults = rootNode.path("Fraud Detection Results");
+                    JsonNode bankDetails = rootNode.path("Metadata");
 
+
+                    List<InvoiceItem> addinvoiceItems = new ArrayList<>();
                     if (fraudDetectionResults.isArray()) {
                         for (JsonNode item : fraudDetectionResults) {
                             // Skip invalid entries
@@ -258,11 +263,30 @@ public class HospitalAdminService {
                             // Assign the associated Invoice (assume the invoice object is available)
                             invoiceItem.setInvoice(invoice); // Ensure "invoice" is properly fetched or passed to this method
 
+                            addinvoiceItems.add(invoiceItem);
+
+
                             // Save the InvoiceItem
                             invoiceItemRepository.save(invoiceItem);
                         }
+
+
+                        String bankAccountNumber = bankDetails.path("Bank Account").asText();
+                        String bankName = bankDetails.path("Bank Name").asText();
+
+
+                        savedInvoice.setInvoiceItems(addinvoiceItems);
+                        savedInvoice.setBankAccountNumber(bankAccountNumber);
+                        savedInvoice.setBankName(bankName);
+
+                        invoiceRepository.save(savedInvoice);
+
                     }
 
+
+                    UploadInvoiceDtoResponse uploadedInvoice = invoiceMapper.toInvoiceDtoRes(savedInvoice);
+
+                    return new ApiResponse<>(200, "success", uploadedInvoice);
 
                 } else {
                     throw new RuntimeException("Failed to fetch data. HTTP Status: " + response.getStatusCode());
@@ -272,7 +296,6 @@ public class HospitalAdminService {
                 return new ApiResponse<>(500, "Invoice saved but failed to send file to AI API", null);
             }
 
-                return new ApiResponse<>(200, "success", uploadedInvoice);
             } catch (Exception e) {
                 // Return error response for unexpected errors
               log.error("errrrrrror: ", e);
