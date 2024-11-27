@@ -210,4 +210,7 @@ public class HospitalService {
         }
     }
 
+    // Get Hospital invoices
+    //public ApiResponse<List<HospitalAdminResponseDto>> getHospitalInvoices() {}
+
 }

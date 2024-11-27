@@ -11,19 +11,19 @@ public class InvoiceItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "invoice_item_id")
-    private Integer invoiceItemId;
+    private Long invoiceItemId;
 
     @Column(name = "invoice_item_name")
     private String invoiceItemName;
 
-    @Column(name = "invoice_item_quantity")
-    private String invoiceItemQuantity;
-
     @Column(name = "invoice_item_price")
     private Double invoiceItemPrice;
 
-    @Column(name = "total_price")
-    private Double ItemTotalPrice;
+    @Column(name = "fraud_level")
+    private String fraudLevel;
+
+    @Column(name = "invoice_item_price_difference")
+    private Double invoiceItemPriceDifference;
 
     // Many-to-One relationship with Invoice
     @ManyToOne

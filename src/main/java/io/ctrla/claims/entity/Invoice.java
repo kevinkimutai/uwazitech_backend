@@ -21,6 +21,12 @@ public class Invoice {
     @Column(name = "invoice_url")
     private String invoiceUrl;
 
+    @Column(name = "bank_account_number")
+    private String bankAccountNumber;
+
+    @Column(name = "bank_name")
+    private String bankName;
+
     // Many-to-One relationship with PolicyHolder
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

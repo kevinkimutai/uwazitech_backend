@@ -100,4 +100,14 @@ public class HospitalAdminController {
     }
 
 
+    //Invoices
+    //Get All preauth of hospital
+    @GetMapping("/{hospitalId}/invoices")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<ApiResponse<List<PreAuthResponseDto>>> getHospitalInvoices(@PathVariable Long hospitalId) {
+        ApiResponse<List<PreAuthResponseDto>> apiResponse = hospitalService.getInvoices(hospitalId);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+    }
+
 }

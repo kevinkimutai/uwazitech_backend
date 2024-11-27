@@ -1,6 +1,8 @@
 package io.ctrla.claims.services;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.ctrla.claims.dto.hospital.HospitalAdminDto;
 import io.ctrla.claims.dto.hospital.HospitalDto;
 import io.ctrla.claims.dto.hospital.HospitalResponseDto;
@@ -14,6 +16,7 @@ import io.ctrla.claims.mappers.HospitalAdminMapper;
 import io.ctrla.claims.mappers.InvoiceMapper;
 import io.ctrla.claims.repo.*;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class HospitalAdminService {
 
@@ -45,6 +49,7 @@ public class HospitalAdminService {
     private final HospitalRepository hospitalRepository;
     private final PreAuthRepository preAuthRepository;
     private final InvoiceMapper invoiceMapper;
+    private final InvoiceItemRepository invoiceItemRepository;
     private static final String UPLOAD_DIR = "uploads";
 
     public HospitalAdminService(HospitalAdminRepository hospitalAdminRepository,
@@ -53,10 +58,11 @@ public class HospitalAdminService {
                                 PolicyHolderRepository policyHolderRepository,
                                 InsuranceRepository insuranceRepository,
                                 InvoiceRepository invoiceRepository,
-                                HospitalRepository hospitalRepository, PreAuthRepository preAuthRepository, InvoiceMapper invoiceMapper) {
+                                HospitalRepository hospitalRepository, PreAuthRepository preAuthRepository, InvoiceMapper invoiceMapper, InvoiceItemRepository invoiceItemRepository) {
         this.hospitalRepository = hospitalRepository;
         this.preAuthRepository = preAuthRepository;
         this.invoiceMapper = invoiceMapper;
+        this.invoiceItemRepository = invoiceItemRepository;
         File uploadDir = new File(UPLOAD_DIR);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -197,33 +203,79 @@ public class HospitalAdminService {
 
 
 
-//          //Send File to AI API
-//            String aiApiUrl = "https://project-uwazitek.onrender.com/process-invoice";
-//            RestTemplate restTemplate = new RestTemplate();
-//
-//            // Prepare the request with multipart data
-//            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-//            body.add("invoice_file", new FileSystemResource(filePath.toFile()));
-//
-//
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-//
-//            HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-//
-//            // Make the request
-//            ResponseEntity<String> response = restTemplate.postForEntity(aiApiUrl, requestEntity, String.class);
-//
-//            // Handle response
-//            if (response.getStatusCode().is2xxSuccessful()) {
-//                return new ApiResponse<>(200, "Invoice saved and file sent to AI API successfully", null);
-//            } else {
-//                return new ApiResponse<>(500, "Invoice saved but failed to send file to AI API", null);
-//            }
+          //Send File to AI API
+            String aiApiUrl = "https://project-uwazitek.onrender.com/process-invoice";
+            String aiGetResultsApiUrl = "https://project-uwazitek.onrender.com/generate-report";
+            RestTemplate restTemplate = new RestTemplate();
+
+            // Prepare the request with multipart data
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+            body.add("invoice_file", new FileSystemResource(filePath.toFile()));
+
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+            // Make the request
+            System.out.println("SENDING FORM TO AI ");
+            ResponseEntity<String> response = restTemplate.postForEntity(aiApiUrl, requestEntity, String.class);
+
+            // Handle response
+            if (response.getStatusCode().is2xxSuccessful()) {
+                System.out.println("SUCCESS ");
+                System.out.println("GETTING AI DATA ");
+                //GENERATE DATA
+                ResponseEntity<String> aiRes = restTemplate.getForEntity(aiGetResultsApiUrl, String.class);
+                // Check the response status and return the body if successful
+                if (aiRes.getStatusCode().is2xxSuccessful()) {
+                    System.out.println("DATA RETURNED IS :"+aiRes.getBody());
+
+                    //MAP ITEMS TO INVOICE ITEM
+                    // Parse the JSON response
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    JsonNode rootNode = objectMapper.readTree(aiRes.getBody());
+
+                    // Fetch "Fraud Detection Results"
+                    JsonNode fraudDetectionResults = rootNode.path("Fraud Detection Results");
+
+                    if (fraudDetectionResults.isArray()) {
+                        for (JsonNode item : fraudDetectionResults) {
+                            // Skip invalid entries
+                            if (item.path("Base Cost").isNull() || item.path("Description").isNull()) {
+                                continue;
+                            }
+
+                            // Map data to InvoiceItem entity
+                            InvoiceItem invoiceItem = new InvoiceItem();
+                            invoiceItem.setInvoiceItemName(item.path("Description").asText());
+                            invoiceItem.setInvoiceItemPrice(item.path("Invoice Cost").asDouble());
+                            invoiceItem.setFraudLevel(item.path("Fraud Category").asText());
+                            invoiceItem.setInvoiceItemPriceDifference(item.path("Price Difference").asDouble());
+                            invoiceItem.setInvoice(savedInvoice);
+
+                            // Assign the associated Invoice (assume the invoice object is available)
+                            invoiceItem.setInvoice(invoice); // Ensure "invoice" is properly fetched or passed to this method
+
+                            // Save the InvoiceItem
+                            invoiceItemRepository.save(invoiceItem);
+                        }
+                    }
+
+
+                } else {
+                    throw new RuntimeException("Failed to fetch data. HTTP Status: " + response.getStatusCode());
+                }
+
+            } else {
+                return new ApiResponse<>(500, "Invoice saved but failed to send file to AI API", null);
+            }
 
                 return new ApiResponse<>(200, "success", uploadedInvoice);
             } catch (Exception e) {
                 // Return error response for unexpected errors
+              log.error("errrrrrror: ", e);
                 return new ApiResponse<>(500, "An error occurred while updating the hospital", null);
             }
         }

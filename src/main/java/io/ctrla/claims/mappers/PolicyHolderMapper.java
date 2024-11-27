@@ -70,6 +70,7 @@ public class PolicyHolderMapper {
         pNumber.setUser(userMapper.toUserResDto( policyHolder.getUser()));
         pNumber.setInsurance(insuranceMapper.toInsuranceRes(policyHolder.getInsurance()));
         pNumber.setPolicyHolderId(policyHolder.getPolicyHolderId());
+        pNumber.setInvoice(policyHolder.getInvoices());
 
         return pNumber;
     }
